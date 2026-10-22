@@ -1,0 +1,166 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+html,body{margin:0;padding:0;background:#e6e2da}
+svg{display:block}
+text{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
+.jp{font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif}
+</style></head>
+<body>
+<div id="root"></div>
+<script>
+const P='file:///Users/dellgod/idu-house/clients/octavia-the-great/merch/assets/prepped/';
+const O='file:///Users/dellgod/idu-house/clients/octavia-the-great/merch/assets/originals/';
+const W=1600,H=1200;
+
+const art=(f,x,y,w,h,extra='')=>`<image href="${f.startsWith('file')?f:P+f}" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="xMidYMid meet" ${extra}/>`;
+
+function shade(id,d,base,dark){
+  return `<clipPath id="c${id}"><path d="${d}"/></clipPath>
+  <g clip-path="url(#c${id})">
+    <path d="${d}" fill="${base}"/>
+    ${dark?'':'<rect x="0" y="0" width="800" height="900" fill="url(#gHi)" />'}
+    <rect x="0" y="0" width="800" height="900" fill="url(#gLo)" />
+  </g>`;
+}
+const defs=`<defs>
+  <linearGradient id="gLo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".24"/></linearGradient>
+  <linearGradient id="gHi" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1 0 0 0 0"/></filter>
+  <filter id="drop" x="-20%" y="-20%" width="140%" height="150%"><feGaussianBlur in="SourceAlpha" stdDeviation="14"/><feOffset dy="22"/><feComponentTransfer><feFuncA type="linear" slope=".30"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <radialGradient id="bg" cx=".5" cy=".42" r=".8"><stop offset="0" stop-color="#f0ede6"/><stop offset="1" stop-color="#dcd7cc"/></radialGradient>
+</defs>`;
+
+// ---------- garments (800x900 local space) ----------
+function tee(id,base,back,printFn){
+  const dark = base.toLowerCase()==='#151515';
+  const neck = back? 'M330 118 C352 140 448 140 470 118' : 'M330 118 C352 184 448 184 470 118';
+  const body=`M330 118 ${neck.slice(neck.indexOf('C'))} L592 158 L732 300 L668 358 L612 312 L612 706 C612 713 607 716 600 716 L200 716 C193 716 188 713 188 706 L188 312 L132 358 L68 300 L208 158 Z`;
+  const rib = dark? '#2a2a2a' : '#d9cfbb', hole = dark? '#0a0a0a' : '#b9ad96';
+  return `<g filter="url(#drop)">${shade(id,body,base,dark)}
+    <path d="${neck} C448 98 352 98 330 118Z" fill="${hole}"/>
+    <path d="${neck}" fill="none" stroke="${rib}" stroke-width="15" stroke-linecap="round"/>
+    <path d="M592 158 Q 624 240 612 312 M208 158 Q 176 240 188 312" fill="none" stroke="${dark?'#000':'#000'}" stroke-opacity=".22" stroke-width="2.5"/>
+    <path d="M196 698 H604" stroke="#000" stroke-opacity=".18" stroke-width="2" stroke-dasharray="5 4"/>
+    <path d="M70 300 L132 358 M730 300 L668 358" stroke="#000" stroke-opacity=".2" stroke-width="2"/>
+    ${printFn()}</g>`;
+}
+function hoodie(id,base,back,printFn,cord){
+  const dark = base.toLowerCase()==='#151515';
+  const body='M262 205 C330 178 470 178 538 205 C610 222 660 330 705 520 L735 700 L640 716 L598 470 L585 800 L215 800 L202 470 L160 716 L65 700 L95 520 C140 330 190 222 262 205Z';
+  const hood = back? 'M285 198 C250 98 330 40 400 36 C470 40 550 98 515 198 C480 248 320 248 285 198Z' : 'M298 198 C282 110 338 62 400 62 C462 62 518 110 502 198 C470 246 330 246 298 198Z';
+  const band = dark? '#232323':'#c4106f';
+  const inner = dark? '#050505':'#8c0a50';
+  return `<g filter="url(#drop)">
+    ${shade(id+'h',hood,base,dark)}
+    ${shade(id,body,base,dark)}
+    ${back? `<path d="M400 44 C 398 120 402 180 400 236" stroke="#000" stroke-opacity=".28" stroke-width="3" fill="none"/><path d="M330 215 C 370 232 430 232 470 215" stroke="#000" stroke-opacity=".2" stroke-width="3" fill="none"/>`
+          : `<path d="M335 192 C335 124 465 124 465 192 C452 228 348 228 335 192Z" fill="${inner}"/>
+             <path d="M298 198 C282 110 338 62 400 62 C462 62 518 110 502 198" fill="none" stroke="#000" stroke-opacity=".18" stroke-width="3"/>
+             <path d="M372 226 C 366 270 364 300 366 336 M428 226 C 434 270 436 300 434 336" stroke="${cord}" stroke-width="6" stroke-linecap="round" fill="none"/>
+             <rect x="360" y="332" width="12" height="24" rx="5" fill="${cord}"/><rect x="428" y="332" width="12" height="24" rx="5" fill="${cord}"/>
+             <path d="M278 592 L522 592 L556 772 L244 772 Z" fill="#000" fill-opacity=".05" stroke="#000" stroke-opacity=".28" stroke-width="3"/>
+             <path d="M278 592 L262 640 M522 592 L538 640" stroke="#000" stroke-opacity=".25" stroke-width="3"/>`}
+    <path d="M215 772 H585 L585 800 L215 800Z" fill="${band}"/>
+    <path d="M727 672 L735 700 L640 716 L636 684Z M73 672 L65 700 L160 716 L164 684Z" fill="${band}"/>
+    <path d="M598 470 Q 604 640 585 800 M202 470 Q 196 640 215 800" stroke="#000" stroke-opacity=".2" stroke-width="2.5" fill="none"/>
+    ${printFn()}</g>`;
+}
+
+const tile=(inner,code,title,sub,bgcol)=>`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${defs}
+  <rect width="${W}" height="${H}" fill="${bgcol||'url(#bg)'}"/>
+  ${inner}
+  <g fill="#111" letter-spacing="3">
+    <text x="64" y="86" font-size="24" font-weight="700">${code}</text>
+    <text x="64" y="${H-96}" font-size="34" font-weight="700">${title}</text>
+    <text x="64" y="${H-56}" font-size="22" fill="#444">${sub}</text>
+  </g>
+  <g transform="translate(${W-132},48)">${art('lockup_gothic_black.png',0,0,68,92)}</g>
+  <text x="${W-64}" y="${H-56}" text-anchor="end" font-size="20" letter-spacing="4" fill="#444">THE GREAT</text>
+</svg>`;
+
+const view=(g,x,y,s,label)=>`<g transform="translate(${x},${y}) scale(${s})">${g}</g><text x="${x+400*s}" y="${y+870*s}" text-anchor="middle" font-size="18" letter-spacing="5" fill="#666">${label}</text>`;
+
+// ---------- tiles ----------
+const T={};
+
+T['hoodie-black']=()=>{
+  const front=hoodie('hbf','#151515',false,()=>art('lockup_gothic_gold.png',468,292,46,64),'#efe7d8');
+  const backp=()=>art('crown_gold.png',380,258,40,24)+art('chant_nounderline_blackgold.png',240,306,320,172);
+  const back=hoodie('hbb','#151515',true,backp,'#efe7d8');
+  return tile(view(front,70,150,.9,'FRONT')+view(back,810,150,.9,'BACK'),'01','BACK MESSAGE HOODIE','Black. Gold and cream print on the back, small crown mark on the chest.');
+};
+T['hoodie-pink']=()=>{
+  const front=hoodie('hpf','#ee1a8c',false,()=>art('lockup_gothic_cream.png',468,292,46,64),'#fff3e3');
+  const backp=()=>art('crown_cream.png',380,258,40,24)+art('chant_nounderline_pinksilver.png',240,306,320,172);
+  const back=hoodie('hpb','#ee1a8c',true,backp,'#fff3e3');
+  return tile(view(front,70,150,.9,'FRONT')+view(back,810,150,.9,'BACK'),'02','BACK MESSAGE HOODIE','Pink. Silver and cream print, same message, second colorway.');
+};
+T['tee-cream']=()=>{
+  const front=tee('tcf','#ece3d0',false,()=>art('lockup_gothic_black.png',444,218,52,70));
+  const back=tee('tcb','#ece3d0',true,()=>art('lockup_gothic_black.png',275,215,250,330)+`<text x="400" y="590" text-anchor="middle" font-size="19" letter-spacing="9" font-weight="700" fill="#111">THE GREAT</text>`);
+  return tile(view(front,70,200,.9,'FRONT')+view(back,810,200,.9,'BACK'),'03','THE GREAT TEE','Cream. Crown over 大 on the back, tiny mark on the chest.');
+};
+T['tee-black']=()=>{
+  const front=tee('tkf','#151515',false,()=>`<text class="jp" x="470" y="226" font-size="26" font-weight="700" fill="#d4a64a" style="writing-mode:vertical-rl;letter-spacing:4px">大丈夫</text>`);
+  const back=tee('tkb','#151515',true,()=>art('mantra_caveatbrush_alt_cream.png',235,245,330,230)+art('crown_gold.png',380,215,40,24));
+  return tile(view(front,70,200,.9,'FRONT')+view(back,810,200,.9,'BACK'),'04','DAIJOUBU TEE','Black. 大丈夫 (it will be okay) on the chest, her line on the back.');
+};
+
+T['mug']=()=>{
+  const mug=`<g filter="url(#drop)">
+   <path d="M560 300 C700 290 720 470 560 500" fill="none" stroke="#161616" stroke-width="44" stroke-linecap="round"/>
+   <clipPath id="mugclip"><path d="M180 230 L560 230 L560 600 C560 640 180 640 180 600Z"/></clipPath>
+   <g clip-path="url(#mugclip)"><image href="${O}be_confident_mug_wrap_CLEAN.png" x="-60" y="215" width="900" height="420" preserveAspectRatio="xMidYMid slice"/>
+     <rect x="180" y="200" width="380" height="460" fill="url(#cyl)"/></g>
+   <ellipse cx="370" cy="230" rx="190" ry="30" fill="#0c0c0c" stroke="#2b2b2b" stroke-width="5"/>
+   <ellipse cx="370" cy="230" rx="170" ry="22" fill="#050505"/>
+  </g>
+  <defs><linearGradient id="cyl" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset=".22" stop-color="#fff" stop-opacity=".14"/><stop offset=".35" stop-color="#fff" stop-opacity="0"/><stop offset=".8" stop-color="#000" stop-opacity=".15"/><stop offset="1" stop-color="#000" stop-opacity=".6"/></linearGradient></defs>`;
+  return tile(`<g transform="translate(96,-170) scale(1.6)">${mug}</g>`,'05','THE CONFIDENCE MUG','Black wrap, clean version of her line repeated all the way around.');
+};
+
+T['sticker']=()=>{
+  const glass=`<rect x="250" y="160" width="1100" height="470" rx="60" fill="#14181d"/>
+   <rect x="250" y="160" width="1100" height="470" rx="60" fill="url(#gl)"/>
+   <rect x="170" y="610" width="1260" height="330" rx="50" fill="#2a2c30"/>
+   <rect x="620" y="690" width="360" height="130" rx="10" fill="#f2f2ee" stroke="#999" stroke-width="3"/>
+   <text x="800" y="778" text-anchor="middle" font-size="64" font-weight="700" letter-spacing="8" fill="#223">GREAT</text>
+   <rect x="300" y="880" width="1000" height="22" rx="8" fill="#17181a"/>`;
+  return tile(`<defs><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset=".35" stop-color="#fff" stop-opacity="0"/><stop offset=".7" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><g filter="url(#drop)">${glass}</g>${art('dear_person_behind_me.png',520,185,560,420)}`,'06','DEAR PERSON BEHIND ME DECAL','Die cut vinyl for a rear window. The same kindness, on the road.');
+};
+
+T['details']=()=>{
+  const label=`<g filter="url(#drop)"><rect x="70" y="250" width="480" height="230" fill="#0d0d0d"/>
+    <rect x="82" y="262" width="456" height="206" fill="none" stroke="#d4a64a" stroke-width="2" stroke-opacity=".6"/>
+    ${art('lockup_gothic_gold.png',150,282,90,166)}
+    <text x="290" y="340" font-size="26" font-weight="700" letter-spacing="5" fill="#d4a64a">THE GREAT</text>
+    <text x="290" y="376" font-size="13" letter-spacing="3" fill="#cfc4ac">OCTAVIA THE GREAT</text>
+    <text class="jp" x="290" y="424" font-size="22" letter-spacing="8" fill="#cfc4ac">大丈夫</text></g>
+    <text x="300" y="540" text-anchor="middle" font-size="18" letter-spacing="5" fill="#666">WOVEN NECK LABEL</text>`;
+  const tag=`<g transform="translate(640,150) rotate(-6 150 230)" filter="url(#drop)"><path d="M60 0 H330 V470 H0 V60 Z" fill="#f4eee0"/>
+    <circle cx="165" cy="48" r="13" fill="#e2dccb" stroke="#bbb" stroke-width="2"/>
+    <path d="M165 48 C 200 -60 260 -90 320 -120" stroke="#d6332a" stroke-width="4" fill="none"/>
+    ${art('lockup_gothic_black.png',95,100,140,210)}
+    <text x="165" y="350" text-anchor="middle" font-size="26" font-weight="700" letter-spacing="7" fill="#111">THE GREAT</text>
+    <text class="jp" x="165" y="396" text-anchor="middle" font-size="20" letter-spacing="3" fill="#333">大丈夫  daijōbu</text>
+    <text x="165" y="426" text-anchor="middle" font-size="15" letter-spacing="2" fill="#555">it is going to be okay</text>
+    <text x="165" y="452" text-anchor="middle" font-size="13" letter-spacing="3" fill="#888">OCTAVIA THE GREAT</text></g>
+    <text x="810" y="720" text-anchor="middle" font-size="18" letter-spacing="5" fill="#666">HANG TAG</text>`;
+  const seal=`<g filter="url(#drop)"><rect x="1090" y="250" width="200" height="200" rx="6" fill="#f3ecdc"/>
+    <rect x="1104" y="264" width="172" height="172" fill="none" stroke="#d6261f" stroke-width="10"/>
+    ${art('lockup_gothic_red.png',1130,282,120,136)}</g>
+    <text x="1190" y="540" text-anchor="middle" font-size="18" letter-spacing="5" fill="#666">RED SEAL MARK</text>`;
+  const sleeve=`<g filter="url(#drop)"><rect x="1130" y="650" width="130" height="380" fill="#151515"/>
+    <text class="jp" x="1195" y="700" font-size="34" font-weight="700" fill="#d4a64a" style="writing-mode:vertical-rl;letter-spacing:8px;text-anchor:middle" transform="translate(-14,0)">大丈夫</text></g>
+    <text x="1195" y="1075" text-anchor="middle" font-size="18" letter-spacing="5" fill="#666">SLEEVE HIT</text>`;
+  const stack=`<g filter="url(#drop)"><rect x="100" y="620" width="430" height="260" fill="#ece3d0"/>
+    ${art('crown_black.png',280,660,70,34)}<text x="315" y="760" text-anchor="middle" font-size="22" letter-spacing="9" font-weight="700" fill="#111">THE GREAT</text><text x="315" y="800" text-anchor="middle" font-size="15" letter-spacing="6" fill="#555">OCTAVIA THE GREAT</text></g>
+    <text x="315" y="930" text-anchor="middle" font-size="18" letter-spacing="5" fill="#666">TEE NAPE PRINT</text>`;
+  return tile(label+tag+seal+sleeve+stack,'07','DETAILS','Woven label, hang tag, red seal, sleeve hit. The quiet parts that make it feel weighted.');
+};
+
+const name=location.hash.slice(1)||'hoodie-black';
+document.getElementById('root').innerHTML=T[name]();
+</script>
+</body></html>
