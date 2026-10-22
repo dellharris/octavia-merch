@@ -5,127 +5,250 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>THE GREAT — Octavia the Great Merch</title>
 <meta name="description" content="THE GREAT: a merch line by Octavia the Great. Pre-order the Back Message Hoodie, tees, mug and decal — first run ships from prototypes.">
+<meta name="theme-color" content="#0a0a0a">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="THE GREAT — Octavia the Great Merch">
+<meta property="og:description" content="Everybody is the great of something. Pre-order the first run.">
+<meta property="og:image" content="https://merch.airwavesent.com/mockups/hoodie-black.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+
 <style>
-  :root{
-    --black:#0a0a0a; --cream:#faf3e6; --gold:#d4a64a; --pink:#f0148c; --red:#d6261f;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0; background:var(--black); color:var(--cream);
-    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
-  }
-  .jp{font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif}
-  a{color:inherit}
+:root{
+  --black:#0a0a0a;
+  --black-soft:#111111;
+  --card:#151412;
+  --line:#252320;
+  --cream:#faf3e6;
+  --cream-dim:#c9c2b2;
+  --muted:#8c8578;
+  --gold:#d4a64a;
+  --pink:#f0148c;
+  --red:#d6261f;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--black);
+  color:var(--cream);
+  font-family:"Inter",-apple-system,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+img{max-width:100%;display:block}
+.jp{font-family:"Noto Serif JP","Hiragino Sans",serif}
+.display{font-family:"Anton",sans-serif;font-weight:400;text-transform:uppercase}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 
-  header{
-    padding:18px 24px; display:flex; justify-content:space-between; align-items:center;
-    border-bottom:1px solid #2a2a2a; position:sticky; top:0; background:var(--black); z-index:10;
-  }
-  header .mark{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.06em; font-size:18px}
-  header .mark img{height:28px}
-  header nav a{
-    margin-left:18px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; text-decoration:none; color:var(--cream)
-  }
-  .preorder-btn{
-    background:var(--gold); color:var(--black); padding:8px 16px; border-radius:999px;
-    font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; text-decoration:none;
-  }
+.grain{
+  position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
-  .hero{
-    text-align:center; padding:64px 20px 40px; max-width:720px; margin:0 auto;
-  }
-  .hero h1{font-size:64px; margin:0; letter-spacing:.04em; font-weight:800}
-  .hero .tag{
-    font-size:18px; margin:14px 0 0; color:var(--gold); font-weight:600;
-  }
-  .hero p{font-size:14px; line-height:1.6; color:#cfcac0; margin:18px auto; max-width:520px}
-  .hero-cta{
-    display:inline-block; margin-top:10px; background:var(--red); color:var(--cream);
-    padding:14px 30px; border-radius:999px; font-size:13px; letter-spacing:.14em;
-    text-transform:uppercase; font-weight:700; text-decoration:none;
-  }
-  .hero-note{font-size:11px; color:#8a8a8a; margin-top:12px; letter-spacing:.04em}
+[data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+[data-reveal].in-view{opacity:1;transform:translateY(0)}
 
-  .hero-img{max-width:420px; width:90%; margin:30px auto 0; display:block; border-radius:8px}
+header{
+  position:sticky;top:0;z-index:20;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 24px;
+  background:rgba(10,10,10,.72);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s;
+}
+header.scrolled{border-color:var(--line)}
+.mark{display:flex;align-items:center;gap:10px;font-size:15px;letter-spacing:.08em}
+.mark img{height:26px;width:auto}
+.mark b{font-weight:800}
+nav{display:flex;align-items:center;gap:28px}
+nav a{font-size:11px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--cream-dim);transition:color .2s}
+nav a:hover{color:var(--cream)}
+.preorder-btn{
+  background:var(--gold);color:var(--black) !important;padding:10px 20px;border-radius:999px;
+  font-weight:700;transition:transform .25s var(--ease),box-shadow .25s var(--ease);
+  box-shadow:0 0 0 0 rgba(212,166,74,0);
+}
+.preorder-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px -6px rgba(212,166,74,.55)}
 
-  .pillars{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:#2a2a2a;
-    margin:40px 0;
-  }
-  .pillars > div{background:var(--black); padding:28px 22px; text-align:center}
-  .pillars b{display:block; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:#8a8a8a; margin-bottom:10px}
-  .pillars .big{display:block; font-size:22px; font-weight:700; margin-bottom:8px}
-  .pillars span.d{font-size:12px; line-height:1.5; color:#bdb8ad; display:block}
+.hero{
+  position:relative;overflow:hidden;
+  padding:120px 24px 0;
+  text-align:center;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:radial-gradient(60% 50% at 50% 0%, rgba(212,166,74,.14), transparent 70%);
+}
+.hero-inner{position:relative;z-index:1;max-width:780px;margin:0 auto}
+.kicker{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
+.hero h1{
+  font-size:clamp(64px,14vw,132px);line-height:.88;margin:0;letter-spacing:.01em;
+}
+.hero .tag{font-size:17px;margin:20px 0 0;color:var(--gold);font-weight:600;font-family:"Inter",sans-serif;letter-spacing:.01em}
+.hero p.desc{font-size:15px;line-height:1.7;color:var(--cream-dim);margin:20px auto 0;max-width:500px}
+.cta-row{display:flex;gap:14px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+.btn{
+  display:inline-block;padding:16px 34px;border-radius:999px;font-size:12.5px;
+  letter-spacing:.14em;text-transform:uppercase;font-weight:700;text-decoration:none;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease);
+}
+.btn-primary{background:var(--red);color:var(--cream);box-shadow:0 0 0 0 rgba(214,38,31,0)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px -6px rgba(214,38,31,.55)}
+.btn-ghost{border:1px solid var(--line);color:var(--cream-dim)}
+.btn-ghost:hover{border-color:var(--cream-dim);color:var(--cream)}
+.hero-note{font-size:11px;color:var(--muted);margin-top:18px;letter-spacing:.03em}
 
-  .section-title{
-    text-align:center; font-size:11px; letter-spacing:.3em; text-transform:uppercase;
-    color:#8a8a8a; margin:0 0 30px;
-  }
+.hero-shot{
+  position:relative;max-width:460px;width:88%;margin:56px auto 0;
+}
+.hero-shot img{
+  width:100%;border-radius:14px;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.8);
+}
+.hero-shot .ring{
+  position:absolute;inset:-40px;z-index:-1;
+  background:radial-gradient(closest-side, rgba(212,166,74,.18), transparent);
+}
 
-  .lineup{max-width:1080px; margin:70px auto; padding:0 20px}
-  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:24px}
-  .card{background:#141414; border:1px solid #262626; border-radius:10px; overflow:hidden; display:flex; flex-direction:column}
-  .card img{width:100%; aspect-ratio:4/3; object-fit:cover; background:#1d1d1d}
-  .card .body{padding:16px 18px 20px; display:flex; flex-direction:column; flex:1}
-  .card h3{font-size:14px; letter-spacing:.06em; margin:0 0 4px; text-transform:uppercase}
-  .card .price{color:var(--gold); font-weight:700; font-size:14px; margin-bottom:6px}
-  .card .desc{font-size:12px; color:#a8a39a; line-height:1.5; margin:0 0 16px; flex:1}
-  .card button{
-    background:transparent; border:1px solid var(--gold); color:var(--gold);
-    padding:10px 0; border-radius:999px; font-size:11px; letter-spacing:.14em;
-    text-transform:uppercase; font-weight:700; cursor:pointer;
-  }
-  .card button:hover{background:var(--gold); color:var(--black)}
+.pillars{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  max-width:1120px;margin:140px auto 0;padding:0 24px;gap:1px;
+  background:var(--line);border-radius:18px;overflow:hidden;
+}
+.pillars > div{
+  background:var(--black-soft);padding:40px 28px;text-align:center;
+  transition:background .3s;
+}
+.pillars > div:hover{background:#17160f}
+.pillars b{display:block;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.pillars .big{display:block;font-size:26px;font-weight:800;margin-bottom:10px;font-family:"Inter",sans-serif}
+.pillars .big .jp{font-size:28px;font-weight:700}
+.pillars span.d{font-size:13px;line-height:1.6;color:var(--cream-dim);display:block}
 
-  .preorder{
-    max-width:560px; margin:70px auto 100px; padding:0 20px; scroll-margin-top:90px;
-  }
-  .preorder .box{background:#141414; border:1px solid #262626; border-radius:14px; padding:32px}
-  .preorder h2{font-size:20px; margin:0 0 6px; letter-spacing:.02em}
-  .preorder .sub{font-size:12px; color:#a8a39a; margin:0 0 24px; line-height:1.5}
-  label{display:block; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:#8a8a8a; margin:16px 0 6px}
-  input, select, textarea{
-    width:100%; background:#1d1d1d; border:1px solid #333; color:var(--cream);
-    padding:11px 12px; border-radius:6px; font-size:14px; font-family:inherit;
-  }
-  textarea{resize:vertical; min-height:60px}
-  .row2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
-  .submit-btn{
-    margin-top:24px; width:100%; background:var(--red); color:var(--cream); border:none;
-    padding:15px 0; border-radius:999px; font-size:13px; letter-spacing:.14em;
-    text-transform:uppercase; font-weight:700; cursor:pointer;
-  }
-  .submit-btn:disabled{opacity:.5; cursor:default}
-  .form-note{font-size:10.5px; color:#696963; margin-top:14px; line-height:1.5}
-  .status{margin-top:16px; font-size:13px; display:none}
-  .status.ok{color:#9fe09f}
-  .status.err{color:#ff9d9d}
+.section-head{text-align:center;max-width:560px;margin:0 auto 50px}
+.section-head .kicker{margin-bottom:10px}
+.section-head h2{font-size:clamp(34px,5vw,52px);margin:0;letter-spacing:.01em}
+.section-head p{font-size:14px;color:var(--cream-dim);margin:14px 0 0;line-height:1.6}
 
-  footer{
-    border-top:1px solid #2a2a2a; padding:30px 20px; text-align:center;
-    font-size:11px; letter-spacing:.08em; color:#777;
-  }
-  footer a{text-decoration:none; color:#aaa}
+.lineup{max-width:1120px;margin:150px auto 0;padding:0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  display:flex;flex-direction:column;transition:transform .35s var(--ease),border-color .35s;
+}
+.card:hover{transform:translateY(-6px);border-color:#3a362c}
+.card .shot{aspect-ratio:4/3;overflow:hidden;background:#1a1812}
+.card .shot img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.card:hover .shot img{transform:scale(1.07)}
+.card .body{padding:20px 22px 24px;display:flex;flex-direction:column;flex:1}
+.card .eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.card h3{font-size:16px;letter-spacing:.02em;margin:0 0 6px;font-weight:700}
+.card .price{color:var(--gold);font-weight:800;font-size:15px;margin-bottom:8px}
+.card .desc{font-size:12.5px;color:var(--cream-dim);line-height:1.55;margin:0 0 18px;flex:1}
+.card button{
+  background:transparent;border:1px solid var(--gold);color:var(--gold);
+  padding:12px 0;border-radius:999px;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:700;cursor:pointer;transition:background .25s,color .25s;
+}
+.card button:hover{background:var(--gold);color:var(--black)}
+
+.direction{max-width:1120px;margin:150px auto 0;padding:0 24px}
+.dir-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:start}
+.dir-grid p{font-size:14.5px;line-height:1.75;color:var(--cream-dim);margin:0 0 16px}
+.dir-grid p b{color:var(--cream);font-weight:700}
+.swatches{display:flex;gap:12px;flex-wrap:wrap}
+.swatch{text-align:center}
+.swatch i{display:block;width:52px;height:52px;border-radius:10px;border:1px solid rgba(255,255,255,.08);margin-bottom:8px}
+.swatch span{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+@media (max-width:760px){
+  .dir-grid{grid-template-columns:1fr}
+  .pillars{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  nav{gap:14px}
+  nav a:not(.preorder-btn){display:none}
+  .mark{font-size:13px}
+  .mark img{height:22px}
+  .preorder-btn{padding:9px 16px;font-size:10.5px}
+}
+
+.preorder{max-width:600px;margin:150px auto 110px;padding:0 24px;scroll-margin-top:90px}
+.preorder .box{
+  background:var(--card);border:1px solid var(--line);border-radius:20px;padding:40px;
+  box-shadow:0 60px 100px -50px rgba(0,0,0,.6);
+}
+.preorder h2{font-size:26px;margin:0 0 8px;letter-spacing:.01em;font-family:"Inter",sans-serif}
+.preorder .sub{font-size:12.5px;color:var(--cream-dim);margin:0 0 28px;line-height:1.6}
+label{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:18px 0 7px}
+input,select,textarea{
+  width:100%;background:var(--black-soft);border:1px solid var(--line);color:var(--cream);
+  padding:12px 14px;border-radius:8px;font-size:14px;font-family:inherit;
+  transition:border-color .2s,box-shadow .2s;
+}
+input:focus,select:focus,textarea:focus{
+  outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,166,74,.15);
+}
+textarea{resize:vertical;min-height:64px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.submit-btn{
+  margin-top:28px;width:100%;background:var(--red);color:var(--cream);border:none;
+  padding:16px 0;border-radius:999px;font-size:13px;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:700;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease);
+}
+.submit-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 24px -6px rgba(214,38,31,.5)}
+.submit-btn:disabled{opacity:.5;cursor:default;transform:none;box-shadow:none}
+.form-note{font-size:10.5px;color:var(--muted);margin-top:16px;line-height:1.6}
+.status{margin-top:16px;font-size:13px;display:none}
+.status.ok{color:#9fe09f}
+.status.err{color:#ff9d9d}
+
+footer{
+  border-top:1px solid var(--line);padding:40px 24px;text-align:center;
+}
+.foot-links{display:flex;justify-content:center;gap:20px;margin-bottom:16px}
+.foot-links a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--cream-dim);transition:color .2s}
+.foot-links a:hover{color:var(--gold)}
+footer .credit{font-size:11px;letter-spacing:.04em;color:var(--muted)}
+footer .credit a{text-decoration:none;color:var(--cream-dim)}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="mark"><img src="assets/prepped/crown_gold.png" alt=""> THE GREAT</div>
+<div class="grain"></div>
+
+<header id="site-header">
+  <div class="mark"><img src="assets/prepped/crown_gold.png" alt=""> <b class="display">THE GREAT</b></div>
   <nav>
     <a href="#lineup">Lineup</a>
+    <a href="#direction">Direction</a>
     <a href="#preorder" class="preorder-btn">Pre-order</a>
   </nav>
 </header>
 
 <section class="hero">
-  <h1>THE GREAT</h1>
-  <p class="tag">Everybody is the great of something.</p>
-  <p>A merch line by Octavia the Great. The crown over <span class="jp">大</span>, the quiet reminder <span class="jp">大丈夫</span> — it's gon' work, and the back print made for the person behind you.</p>
-  <a href="#preorder" class="hero-cta">Pre-order the first run</a>
-  <div class="hero-note">First run made from hand-finished prototypes. Limited quantities — pre-orders decide what gets made next.</div>
-  <img class="hero-img" src="mockups/hoodie-black.png" alt="Back Message Hoodie, black and gold">
+  <div class="hero-inner">
+    <div class="kicker">Octavia the Great</div>
+    <h1 class="display">THE GREAT</h1>
+    <p class="tag">Everybody is the great of something.</p>
+    <p class="desc">The crown over <span class="jp">大</span>, the quiet reminder <span class="jp">大丈夫</span> — it's gon' work, and the back print made for the person behind you.</p>
+    <div class="cta-row">
+      <a href="#preorder" class="btn btn-primary">Pre-order the first run</a>
+      <a href="#lineup" class="btn btn-ghost">See the lineup</a>
+    </div>
+    <div class="hero-note">First run made from hand-finished prototypes. Limited quantities — pre-orders decide what gets made next.</div>
+  </div>
+  <div class="hero-shot">
+    <div class="ring"></div>
+    <img src="mockups/hoodie-black.png" alt="Back Message Hoodie, black and gold" loading="eager">
+  </div>
 </section>
 
 <div class="pillars">
@@ -147,56 +270,66 @@
 </div>
 
 <section class="lineup" id="lineup">
-  <div class="section-title">The Lineup — Pre-order Prices</div>
+  <div class="section-head">
+    <div class="kicker">The Lineup</div>
+    <h2 class="display">Six pieces, one idea each</h2>
+    <p>Pre-order prices while the first run is in prototype.</p>
+  </div>
   <div class="grid">
-    <div class="card">
-      <img src="mockups/hoodie-black.png" alt="Back Message Hoodie, black and gold">
+    <div class="card" data-reveal>
+      <div class="shot"><img src="mockups/hoodie-black.png" alt="Back Message Hoodie, black and gold" loading="lazy"></div>
       <div class="body">
+        <div class="eyebrow">Hero piece</div>
         <h3>Back Message Hoodie</h3>
         <div class="price">$68</div>
-        <p class="desc">Black, gold and cream. The hero piece.</p>
+        <p class="desc">Black, gold and cream.</p>
         <button onclick="preorder('Back Message Hoodie — Black/Gold')">Pre-order</button>
       </div>
     </div>
-    <div class="card">
-      <img src="mockups/hoodie-pink.png" alt="Back Message Hoodie, pink and silver">
+    <div class="card" data-reveal>
+      <div class="shot"><img src="mockups/hoodie-pink.png" alt="Back Message Hoodie, pink and silver" loading="lazy"></div>
       <div class="body">
+        <div class="eyebrow">Hero piece</div>
         <h3>Back Message Hoodie</h3>
         <div class="price">$68</div>
         <p class="desc">Hot pink, silver and cream.</p>
         <button onclick="preorder('Back Message Hoodie — Pink/Silver')">Pre-order</button>
       </div>
     </div>
-    <div class="card">
-      <img src="mockups/tee-cream.png" alt="The Great Tee, cream">
+    <div class="card" data-reveal>
+      <div class="shot"><img src="mockups/tee-cream.png" alt="The Great Tee, cream" loading="lazy"></div>
       <div class="body">
+        <div class="eyebrow">Tee</div>
         <h3>The Great Tee</h3>
         <div class="price">$36</div>
         <p class="desc">Cream. Crown over a large <span class="jp">大</span> on the back.</p>
         <button onclick="preorder('The Great Tee — Cream')">Pre-order</button>
       </div>
     </div>
-    <div class="card">
-      <img src="mockups/tee-black.png" alt="Daijoubu Tee, black">
+    <div class="card" data-reveal>
+      <div class="shot"><img src="mockups/tee-black.png" alt="Daijoubu Tee, black" loading="lazy"></div>
       <div class="body">
+        <div class="eyebrow">Tee</div>
         <h3>Daijoubu Tee</h3>
         <div class="price">$36</div>
         <p class="desc">Black. <span class="jp">大丈夫</span> on the chest, her line on the back.</p>
         <button onclick="preorder('Daijoubu Tee — Black')">Pre-order</button>
       </div>
     </div>
-    <div class="card">
-      <img src="mockups/mug.png" alt="Confidence Mug">
+    <div class="card" data-reveal>
+      <div class="shot"><img src="mockups/mug.png" alt="Confidence Mug" loading="lazy"></div>
       <div class="body">
+        <div class="eyebrow">Everyday</div>
         <h3>Confidence Mug</h3>
         <div class="price">$20</div>
         <p class="desc">Black wrap, her line all the way around.</p>
         <button onclick="preorder('Confidence Mug')">Pre-order</button>
       </div>
     </div>
-    <div class="card">
-      <img src="mockups/sticker.png" alt="Dear Person Behind Me decal">
+    <div class="card" data-reveal>
+      <div class="shot"><img src="mockups/sticker.png" alt="Dear Person Behind Me decal" loading="lazy"></div>
       <div class="body">
+        <div class="eyebrow">Everyday</div>
         <h3>Dear Person Behind Me Decal</h3>
         <div class="price">$7</div>
         <p class="desc">Die-cut vinyl for a rear window.</p>
@@ -206,9 +339,29 @@
   </div>
 </section>
 
-<section class="preorder" id="preorder">
+<section class="direction" id="direction">
+  <div class="dir-grid">
+    <div data-reveal>
+      <div class="kicker">The Direction</div>
+      <p><b>Quiet and weighted, like Uniqlo UT.</b> Small mark on the chest, large calm message on the back. Heavyweight boxy fit, matte print. Woven label, hang tag, a small red seal, a vertical hit on the sleeve.</p>
+      <p><b>Real words only.</b> Just <span class="jp">大</span> and <span class="jp">大丈夫</span>, checked by a native reader before print. No waves, suns, or costume.</p>
+    </div>
+    <div data-reveal>
+      <div class="kicker">Palette</div>
+      <div class="swatches">
+        <div class="swatch"><i style="background:#0a0a0a"></i><span>Black</span></div>
+        <div class="swatch"><i style="background:#faf3e6"></i><span>Cream</span></div>
+        <div class="swatch"><i style="background:#d4a64a"></i><span>Gold</span></div>
+        <div class="swatch"><i style="background:#f0148c"></i><span>Pink</span></div>
+        <div class="swatch"><i style="background:#d6261f"></i><span>Red seal</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="preorder" id="preorder" data-reveal>
   <div class="box">
-    <h2>Pre-order</h2>
+    <h2 class="display" style="font-size:30px">Pre-order</h2>
     <p class="sub">No payment today. We'll follow up by email to confirm your order and collect payment once your piece is ready to ship.</p>
     <form id="preorder-form">
       <label for="product">Product</label>
@@ -262,8 +415,13 @@
 </section>
 
 <footer>
-  THE GREAT — a merch line by <a href="https://airwavesent.com/octaviathegreat">Octavia the Great</a>, with IDU House.<br>
-  Questions: <a href="mailto:dell@iduhouse.com">dell@iduhouse.com</a>
+  <div class="foot-links">
+    <a href="https://airwavesent.com/octaviathegreat">Music</a>
+    <a href="https://instagram.com/octaviathegreat888">Instagram</a>
+    <a href="https://tiktok.com/@octaviathegreat888">TikTok</a>
+    <a href="https://youtube.com/@octaviathegreat888">YouTube</a>
+  </div>
+  <div class="credit">THE GREAT — a merch line by Octavia the Great, with IDU House. Questions: <a href="mailto:dell@iduhouse.com">dell@iduhouse.com</a></div>
 </footer>
 
 <script>
@@ -274,6 +432,24 @@
     document.getElementById('product').value = productName;
     document.getElementById('preorder').scrollIntoView({behavior:'smooth'});
   }
+
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 10);
+  }, {passive:true});
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.15});
+  document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+  setTimeout(() => {
+    document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('in-view'));
+  }, 2500);
 
   document.getElementById('preorder-form').addEventListener('submit', async function(e){
     e.preventDefault();
