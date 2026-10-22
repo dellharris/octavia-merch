@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE GREAT — Octavia the Great Merch</title>
+<meta name="description" content="THE GREAT: a merch line by Octavia the Great. Pre-order the Back Message Hoodie, tees, mug and decal — first run ships from prototypes.">
+<style>
+  :root{
+    --black:#0a0a0a; --cream:#faf3e6; --gold:#d4a64a; --pink:#f0148c; --red:#d6261f;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--black); color:var(--cream);
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  .jp{font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif}
+  a{color:inherit}
+
+  header{
+    padding:18px 24px; display:flex; justify-content:space-between; align-items:center;
+    border-bottom:1px solid #2a2a2a; position:sticky; top:0; background:var(--black); z-index:10;
+  }
+  header .mark{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.06em; font-size:18px}
+  header .mark img{height:28px}
+  header nav a{
+    margin-left:18px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; text-decoration:none; color:var(--cream)
+  }
+  .preorder-btn{
+    background:var(--gold); color:var(--black); padding:8px 16px; border-radius:999px;
+    font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; text-decoration:none;
+  }
+
+  .hero{
+    text-align:center; padding:64px 20px 40px; max-width:720px; margin:0 auto;
+  }
+  .hero h1{font-size:64px; margin:0; letter-spacing:.04em; font-weight:800}
+  .hero .tag{
+    font-size:18px; margin:14px 0 0; color:var(--gold); font-weight:600;
+  }
+  .hero p{font-size:14px; line-height:1.6; color:#cfcac0; margin:18px auto; max-width:520px}
+  .hero-cta{
+    display:inline-block; margin-top:10px; background:var(--red); color:var(--cream);
+    padding:14px 30px; border-radius:999px; font-size:13px; letter-spacing:.14em;
+    text-transform:uppercase; font-weight:700; text-decoration:none;
+  }
+  .hero-note{font-size:11px; color:#8a8a8a; margin-top:12px; letter-spacing:.04em}
+
+  .hero-img{max-width:420px; width:90%; margin:30px auto 0; display:block; border-radius:8px}
+
+  .pillars{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:#2a2a2a;
+    margin:40px 0;
+  }
+  .pillars > div{background:var(--black); padding:28px 22px; text-align:center}
+  .pillars b{display:block; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:#8a8a8a; margin-bottom:10px}
+  .pillars .big{display:block; font-size:22px; font-weight:700; margin-bottom:8px}
+  .pillars span.d{font-size:12px; line-height:1.5; color:#bdb8ad; display:block}
+
+  .section-title{
+    text-align:center; font-size:11px; letter-spacing:.3em; text-transform:uppercase;
+    color:#8a8a8a; margin:0 0 30px;
+  }
+
+  .lineup{max-width:1080px; margin:70px auto; padding:0 20px}
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:24px}
+  .card{background:#141414; border:1px solid #262626; border-radius:10px; overflow:hidden; display:flex; flex-direction:column}
+  .card img{width:100%; aspect-ratio:4/3; object-fit:cover; background:#1d1d1d}
+  .card .body{padding:16px 18px 20px; display:flex; flex-direction:column; flex:1}
+  .card h3{font-size:14px; letter-spacing:.06em; margin:0 0 4px; text-transform:uppercase}
+  .card .price{color:var(--gold); font-weight:700; font-size:14px; margin-bottom:6px}
+  .card .desc{font-size:12px; color:#a8a39a; line-height:1.5; margin:0 0 16px; flex:1}
+  .card button{
+    background:transparent; border:1px solid var(--gold); color:var(--gold);
+    padding:10px 0; border-radius:999px; font-size:11px; letter-spacing:.14em;
+    text-transform:uppercase; font-weight:700; cursor:pointer;
+  }
+  .card button:hover{background:var(--gold); color:var(--black)}
+
+  .preorder{
+    max-width:560px; margin:70px auto 100px; padding:0 20px; scroll-margin-top:90px;
+  }
+  .preorder .box{background:#141414; border:1px solid #262626; border-radius:14px; padding:32px}
+  .preorder h2{font-size:20px; margin:0 0 6px; letter-spacing:.02em}
+  .preorder .sub{font-size:12px; color:#a8a39a; margin:0 0 24px; line-height:1.5}
+  label{display:block; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:#8a8a8a; margin:16px 0 6px}
+  input, select, textarea{
+    width:100%; background:#1d1d1d; border:1px solid #333; color:var(--cream);
+    padding:11px 12px; border-radius:6px; font-size:14px; font-family:inherit;
+  }
+  textarea{resize:vertical; min-height:60px}
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  .submit-btn{
+    margin-top:24px; width:100%; background:var(--red); color:var(--cream); border:none;
+    padding:15px 0; border-radius:999px; font-size:13px; letter-spacing:.14em;
+    text-transform:uppercase; font-weight:700; cursor:pointer;
+  }
+  .submit-btn:disabled{opacity:.5; cursor:default}
+  .form-note{font-size:10.5px; color:#696963; margin-top:14px; line-height:1.5}
+  .status{margin-top:16px; font-size:13px; display:none}
+  .status.ok{color:#9fe09f}
+  .status.err{color:#ff9d9d}
+
+  footer{
+    border-top:1px solid #2a2a2a; padding:30px 20px; text-align:center;
+    font-size:11px; letter-spacing:.08em; color:#777;
+  }
+  footer a{text-decoration:none; color:#aaa}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="mark"><img src="assets/prepped/crown_gold.png" alt=""> THE GREAT</div>
+  <nav>
+    <a href="#lineup">Lineup</a>
+    <a href="#preorder" class="preorder-btn">Pre-order</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>THE GREAT</h1>
+  <p class="tag">Everybody is the great of something.</p>
+  <p>A merch line by Octavia the Great. The crown over <span class="jp">大</span>, the quiet reminder <span class="jp">大丈夫</span> — it's gon' work, and the back print made for the person behind you.</p>
+  <a href="#preorder" class="hero-cta">Pre-order the first run</a>
+  <div class="hero-note">First run made from hand-finished prototypes. Limited quantities — pre-orders decide what gets made next.</div>
+  <img class="hero-img" src="mockups/hoodie-black.png" alt="Back Message Hoodie, black and gold">
+</section>
+
+<div class="pillars">
+  <div>
+    <b>01 · The Great</b>
+    <span class="big">Crown over <span class="jp">大</span></span>
+    <span class="d">The identity mark. <span class="jp">大</span> means great — anyone can claim it.</span>
+  </div>
+  <div>
+    <b>02 · It's gon' work</b>
+    <span class="big"><span class="jp">大丈夫</span> daijōbu</span>
+    <span class="d">Japan's everyday way of saying it will be okay. Worn quietly.</span>
+  </div>
+  <div>
+    <b>03 · For who's behind you</b>
+    <span class="big">I really want you to win</span>
+    <span class="d">A back print for the person behind you. From the person in front of you.</span>
+  </div>
+</div>
+
+<section class="lineup" id="lineup">
+  <div class="section-title">The Lineup — Pre-order Prices</div>
+  <div class="grid">
+    <div class="card">
+      <img src="mockups/hoodie-black.png" alt="Back Message Hoodie, black and gold">
+      <div class="body">
+        <h3>Back Message Hoodie</h3>
+        <div class="price">$68</div>
+        <p class="desc">Black, gold and cream. The hero piece.</p>
+        <button onclick="preorder('Back Message Hoodie — Black/Gold')">Pre-order</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="mockups/hoodie-pink.png" alt="Back Message Hoodie, pink and silver">
+      <div class="body">
+        <h3>Back Message Hoodie</h3>
+        <div class="price">$68</div>
+        <p class="desc">Hot pink, silver and cream.</p>
+        <button onclick="preorder('Back Message Hoodie — Pink/Silver')">Pre-order</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="mockups/tee-cream.png" alt="The Great Tee, cream">
+      <div class="body">
+        <h3>The Great Tee</h3>
+        <div class="price">$36</div>
+        <p class="desc">Cream. Crown over a large <span class="jp">大</span> on the back.</p>
+        <button onclick="preorder('The Great Tee — Cream')">Pre-order</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="mockups/tee-black.png" alt="Daijoubu Tee, black">
+      <div class="body">
+        <h3>Daijoubu Tee</h3>
+        <div class="price">$36</div>
+        <p class="desc">Black. <span class="jp">大丈夫</span> on the chest, her line on the back.</p>
+        <button onclick="preorder('Daijoubu Tee — Black')">Pre-order</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="mockups/mug.png" alt="Confidence Mug">
+      <div class="body">
+        <h3>Confidence Mug</h3>
+        <div class="price">$20</div>
+        <p class="desc">Black wrap, her line all the way around.</p>
+        <button onclick="preorder('Confidence Mug')">Pre-order</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="mockups/sticker.png" alt="Dear Person Behind Me decal">
+      <div class="body">
+        <h3>Dear Person Behind Me Decal</h3>
+        <div class="price">$7</div>
+        <p class="desc">Die-cut vinyl for a rear window.</p>
+        <button onclick="preorder('Dear Person Behind Me Decal')">Pre-order</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="preorder" id="preorder">
+  <div class="box">
+    <h2>Pre-order</h2>
+    <p class="sub">No payment today. We'll follow up by email to confirm your order and collect payment once your piece is ready to ship.</p>
+    <form id="preorder-form">
+      <label for="product">Product</label>
+      <select id="product" required>
+        <option value="">Choose a product</option>
+        <option>Back Message Hoodie — Black/Gold</option>
+        <option>Back Message Hoodie — Pink/Silver</option>
+        <option>The Great Tee — Cream</option>
+        <option>Daijoubu Tee — Black</option>
+        <option>Confidence Mug</option>
+        <option>Dear Person Behind Me Decal</option>
+      </select>
+
+      <div class="row2">
+        <div>
+          <label for="size">Size</label>
+          <select id="size">
+            <option value="">N/A</option>
+            <option>S</option><option>M</option><option>L</option>
+            <option>XL</option><option>2XL</option><option>3XL</option>
+          </select>
+        </div>
+        <div>
+          <label for="qty">Quantity</label>
+          <input id="qty" type="number" min="1" value="1">
+        </div>
+      </div>
+
+      <label for="name">Name</label>
+      <input id="name" type="text" required>
+
+      <div class="row2">
+        <div>
+          <label for="email">Email</label>
+          <input id="email" type="email" required>
+        </div>
+        <div>
+          <label for="phone">Phone (optional)</label>
+          <input id="phone" type="tel">
+        </div>
+      </div>
+
+      <label for="notes">Notes (optional)</label>
+      <textarea id="notes" placeholder="Shipping address, color preference, anything else"></textarea>
+
+      <button type="submit" class="submit-btn" id="submit-btn">Reserve mine</button>
+      <div class="status" id="status"></div>
+      <p class="form-note">Prototypes are hand-finished by a local print shop ahead of the full run. Pre-ordering helps decide what gets made next and when.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  THE GREAT — a merch line by <a href="https://airwavesent.com/octaviathegreat">Octavia the Great</a>, with IDU House.<br>
+  Questions: <a href="mailto:dell@iduhouse.com">dell@iduhouse.com</a>
+</footer>
+
+<script>
+  // Fill in your Google Apps Script web app URL here (see IDU House notes for setup steps).
+  const ENDPOINT_URL = "REPLACE_WITH_APPS_SCRIPT_URL";
+
+  function preorder(productName){
+    document.getElementById('product').value = productName;
+    document.getElementById('preorder').scrollIntoView({behavior:'smooth'});
+  }
+
+  document.getElementById('preorder-form').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const status = document.getElementById('status');
+    const payload = {
+      product: document.getElementById('product').value,
+      size: document.getElementById('size').value,
+      qty: document.getElementById('qty').value,
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      notes: document.getElementById('notes').value,
+      submitted_at: new Date().toISOString(),
+    };
+
+    if (ENDPOINT_URL.indexOf('REPLACE_WITH') === 0){
+      status.className = 'status err';
+      status.style.display = 'block';
+      status.textContent = 'Form isn\'t connected yet — tell Dell to finish the setup.';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    try{
+      await fetch(ENDPOINT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {'Content-Type': 'text/plain;charset=utf-8'},
+        body: JSON.stringify(payload),
+      });
+      status.className = 'status ok';
+      status.style.display = 'block';
+      status.textContent = "Reserved — we'll email you to confirm.";
+      document.getElementById('preorder-form').reset();
+    } catch(err){
+      status.className = 'status err';
+      status.style.display = 'block';
+      status.textContent = 'Something went wrong — email dell@iduhouse.com directly to reserve.';
+    } finally{
+      btn.disabled = false;
+      btn.textContent = 'Reserve mine';
+    }
+  });
+</script>
+
+</body>
+</html>
